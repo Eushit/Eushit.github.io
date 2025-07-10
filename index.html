@@ -2,23 +2,59 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>이미지 우측 상단에 넣기</title>
+  <title>그림처럼 쓰는 페이지</title>
   <style>
     body {
       margin: 0;
       padding: 0;
+      background-color: white;
+      font-family: monospace;
     }
+
     .top-right-image {
       position: absolute;
       top: 20px;
       right: 20px;
-      width: 200px; /* 원하는 크기로 조정 가능 */
+      width: 250px;
+    }
+
+    .top-left-writer {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 300px;
+      height: 200px;
+      padding: 10px;
+      background: transparent;
+      border: none;
+      outline: none;
+      resize: none;
+      font-size: 16px;
+      line-height: 1.4;
+      color: black;
+      caret-color: black;
     }
   </style>
 </head>
 <body>
 
-  <img src="picasso1.jpg" class="top-right-image" alt="My Image">
+  <!-- 오른쪽 위 이미지 -->
+  <img src="picasso1.jpg" class="top-right-image" alt="피카소">
 
+  <!-- 왼쪽 위 글쓰기 공간 -->
+  <textarea class="top-left-writer" id="secretArea" placeholder=""></textarea>
+
+  <script>
+    const key = 'left-upper-writing';
+    const area = document.getElementById('secretArea');
+
+    // 페이지 로드 시 저장된 내용 불러오기
+    area.value = localStorage.getItem(key) || '';
+
+    // 입력 시 저장
+    area.addEventListener('input', () => {
+      localStorage.setItem(key, area.value);
+    });
+  </script>
 </body>
 </html>
